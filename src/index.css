@@ -1,23 +1,65 @@
-/* src/index.css */
-.wrapper {
-position: relative;
-width: 968px;
-height: 1654px;
-top:50%;
-left:50%;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
+body {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Roboto";
 }
-
+.wrapper {
+  position: relative;
+  width: 968px;
+  height: 1654px;
+  top: 50%;
+  left: 50%;
+}
+ul {
+  padding-inline-start: 0px;
+}
 .dialog {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background-color: rgba(48, 46, 46, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.dialog-content {
+  background-color: rgba(36, 34, 34, 0.5) !important;
+}
+
+li .button {
+  margin: 0px;
+  padding: 0px;
+}
+
+.button {
+  display: flex;
+  box-shadow: none;
+  width: 150px;
+  background-color: black;
+  color: white;
+  display: inline-block;
+  cursor: pointer;
+  padding: 0.5rem;
+  border: none;
+  margin-right: 5px;
+  box-shadow: none;
+  outline: none;
+  display: inline-block;
+}
+
+.scrollable-list {
+  background-color: black;
+  color: white;
+}
+.green {
+  margin: 0px;
+  background-color: green;
+  color: white;
 }
 
 .dialog-content {
@@ -42,12 +84,6 @@ left:50%;
 button {
   margin-right: 5px;
 }
-/* Test */
-
-/* Test */
-
-position: relative;
-width: 968px;
-height: 1654px;
-
-
+.checkbox {
+  padding: 2rem;
+}

@@ -10,7 +10,10 @@ const SelectionWidget: React.FC = () => {
   const [filterValue, setFilterValue] = useState(0);
 
   useEffect(() => {
-    const initialElements = Array.from({ length: 300 }, (_, i) => `Element ${i + 1}`);
+    const initialElements = Array.from(
+      { length: 300 },
+      (_, i) => `Element ${i + 1}`
+    );
     setElements(initialElements);
   }, []);
 
@@ -38,36 +41,50 @@ const SelectionWidget: React.FC = () => {
 
   const handleSelect = (element: string) => {
     if (tempSelected.includes(element)) {
-      setTempSelected(tempSelected.filter(el => el !== element));
+      setTempSelected(tempSelected.filter((el) => el !== element));
     } else if (tempSelected.length < 3) {
       setTempSelected([...tempSelected, element]);
     }
   };
 
   const filteredElements = elements
-    .filter(el => el.toLowerCase().includes(searchQuery))
-    .filter(el => {
+    .filter((el) => el.toLowerCase().includes(searchQuery))
+    .filter((el) => {
       const num = parseInt(el.split(" ")[1]);
       return num > filterValue;
     });
 
   return (
-    <div>
+    <div className="wrapper">
       <h3>Selected Items</h3>
       <ul>
-        {selectedElements.map(el => (
-          <li key={el}>
-            {el} <button onClick={() => setSelectedElements(selectedElements.filter(se => se !== el))}>X</button>
+        {selectedElements.map((el) => (
+          <li className="button" key={el}>
+            {el}{" "}
+            <div
+              onClick={() =>
+                setSelectedElements(selectedElements.filter((se) => se !== el))
+              }
+            >
+              X
+            </div>
           </li>
         ))}
       </ul>
-      <button onClick={handleOpenDialog}>Change my choice</button>
+      <button className="button green" onClick={handleOpenDialog}>
+        Change my choice
+      </button>
 
       {dialogOpen && (
         <div className="dialog">
           <div className="dialog-content">
             <h3>Select Items</h3>
-            <input type="text" placeholder="Search..." value={searchQuery} onChange={handleSearch} />
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={handleSearch}
+            />
             <select value={filterValue} onChange={handleFilter}>
               <option value="0">All</option>
               <option value="10">Greater than 10</option>
@@ -75,12 +92,14 @@ const SelectionWidget: React.FC = () => {
               <option value="100">Greater than 100</option>
             </select>
             <div className="scrollable-list">
-              {filteredElements.map(el => (
+              {filteredElements.map((el) => (
                 <div key={el}>
                   <input
                     type="checkbox"
                     checked={tempSelected.includes(el)}
-                    disabled={!tempSelected.includes(el) && tempSelected.length >= 3}
+                    disabled={
+                      !tempSelected.includes(el) && tempSelected.length >= 3
+                    }
                     onChange={() => handleSelect(el)}
                   />
                   {el}
@@ -88,8 +107,8 @@ const SelectionWidget: React.FC = () => {
               ))}
             </div>
             <div className="selected-items">
-              {tempSelected.map(el => (
-                <div key={el}>
+              {tempSelected.map((el) => (
+                <div className="button" key={el}>
                   {el} <button onClick={() => handleSelect(el)}>X</button>
                 </div>
               ))}
