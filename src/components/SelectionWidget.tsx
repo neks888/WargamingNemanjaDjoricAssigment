@@ -8,6 +8,7 @@ const SelectionWidget: React.FC = () => {
   const [tempSelected, setTempSelected] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterValue, setFilterValue] = useState(0);
+  let display;
 
   useEffect(() => {
     const initialElements = Array.from(
@@ -57,6 +58,7 @@ const SelectionWidget: React.FC = () => {
   return (
     <div className="wrapper">
       <h3>Selected Items</h3>
+      {`You have selected ${selectedElements.length} items`}
       <ul>
         {selectedElements.map((el) => (
           <li className="button" key={el}>
@@ -78,7 +80,7 @@ const SelectionWidget: React.FC = () => {
       {dialogOpen && (
         <div className="dialog">
           <div className="dialog-content">
-            <h3>Select Items</h3>
+            <h3 style={{ color: "white" }}>Select Items</h3>
             <input
               type="text"
               placeholder="Search..."
@@ -87,9 +89,9 @@ const SelectionWidget: React.FC = () => {
             />
             <select value={filterValue} onChange={handleFilter}>
               <option value="0">All</option>
-              <option value="10">Greater than 10</option>
-              <option value="50">Greater than 50</option>
-              <option value="100">Greater than 100</option>
+              <option value="10">{`> 0`}</option>
+              <option value="50">{`> 50`}</option>
+              <option value="100">{`> 100`}</option>
             </select>
             <div className="scrollable-list">
               {filteredElements.map((el) => (
@@ -109,12 +111,16 @@ const SelectionWidget: React.FC = () => {
             <div className="selected-items">
               {tempSelected.map((el) => (
                 <div className="button" key={el}>
-                  {el} <button onClick={() => handleSelect(el)}>X</button>
+                  {el} <div onClick={() => handleSelect(el)}>X</div>
                 </div>
               ))}
             </div>
-            <button onClick={handleSave}>Save</button>
-            <button onClick={handleCancel}>Cancel</button>
+            <div className="green" onClick={handleSave}>
+              Save
+            </div>
+            <div className="button red" onClick={handleCancel}>
+              Cancel
+            </div>
           </div>
         </div>
       )}

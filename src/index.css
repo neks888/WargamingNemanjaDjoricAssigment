@@ -38,6 +38,7 @@ li .button {
 
 .button {
   display: flex;
+  justify-content: space-between;
   box-shadow: none;
   width: 150px;
   background-color: black;
@@ -52,14 +53,23 @@ li .button {
   display: inline-block;
 }
 
+.button div {
+  display: inline-block;
+}
+
 .scrollable-list {
   background-color: black;
   color: white;
 }
 .green {
+  box-shadow: none;
+  outline: 0px;
   margin: 0px;
   background-color: green;
   color: white;
+  display: inline-block;
+  padding: 0.5rem;
+  cursor: pointer;
 }
 
 .dialog-content {
@@ -86,4 +96,10 @@ button {
 }
 .checkbox {
   padding: 2rem;
+}
+
+.red {
+  background-color: red;
+  padding: 0.5rem;
+  color: white;
 }
